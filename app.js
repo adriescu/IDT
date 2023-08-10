@@ -2,7 +2,6 @@ const express = require("express");
 const app = express();
 const path = require("path");
 const port = 3000;
-const listRouter = express.Router();
 const itemRoute = require('./src/routes/item');
 const listRoute = require('./src/routes/list');
 
@@ -13,7 +12,7 @@ app.listen(port, () => {
 })
 
 app.get('/', (req, res) => {
-    res.sendFile(path.resolve(__dirname, './src/views/index.html'));
+    res.render(path.resolve(__dirname, './src/views/pages/index.ejs'));
 })
 
 app.use('/item', itemRoute);
