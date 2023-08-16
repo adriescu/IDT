@@ -3,7 +3,7 @@ const router = express.Router()
 const path = require('path')
 
 router.get('/', (req, res)=>{
-    res.sendFile(path.resolve(__dirname, "./modules/index/views/index.html"))
+    res.render('../modules/index/views/index')
 })
 
 
