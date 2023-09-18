@@ -11,7 +11,7 @@ const config_mysql = {
     dateStrings: true
 }
 
-exports.queryMySQL = (query, params) => {
+module.exports = (query, params) => {
     return new Promise((resolve, reject) => {
         var connection = mysql.createConnection(config_mysql)
         //console.log(query)
