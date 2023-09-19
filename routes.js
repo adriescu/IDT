@@ -7,13 +7,19 @@ cItem = require('./modules/controllers/itemController')
 cList = require('./modules/controllers/listController')
 cLogin = require('./modules/controllers/loginController')
 
+router.get('/', cIndex.getIndex)
+
 router.get('/login', cLogin.getLogin)
 router.post('/login', cLogin.postLogin)
 
+router.get('/item', cItem.getItem)
+router.get('/item/:id', cItem.getItemById)
 
+router.get('/list', cList.getList)
 
-router.get('/list', cList)
-
+router.use((req, res) => {
+    res.render("404")
+})
 
 
 

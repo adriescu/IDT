@@ -2,7 +2,7 @@ const mLogin = require('../models/loginModel')
 
 module.exports = {
     getLogin: (req, res) => {
-        res.render('login')
+        res.render('login', {mensaje: ""})
     },
     postLogin: async (req, res) => {
         let respuesta = await mLogin.getUserByEmail(req.body.email);
