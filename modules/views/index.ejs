@@ -3,9 +3,72 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+    <title>Bienvenido</title>
+    <link rel="stylesheet" href="/css/general.css">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@24,400,0,0" />
+    <style>
+        h2{
+            font-size: 5rem;
+        }
+        section{
+            width: 100vw;
+            text-align: center;
+        }
+        #id-input, #nombre-input{
+            width: 40vw;
+            min-width: 300px;
+            height: 3rem;
+            font-size: 2rem;
+            border: 2px solid black;
+            margin-bottom: 2rem;
+            padding: 0 1rem;
+            transition: all 0.5s;
+        }
+        #id-input:hover, #nombre-input:hover, #id-input:focus, #nombre-input:focus{
+            border-radius: 20px;
+        }
+
+        form{
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        form button{
+            height: 3rem;
+            border: 2px black solid;
+            padding: 0;
+            margin-bottom: 2rem;
+            transition: all 0.5s;
+            width: 3rem;
+        }
+        
+        form button:hover{
+            cursor: pointer;
+        }
+    </style>
 </head>
 <body>
-    
+    <main>
+        <section>
+            <h2>Bienvenido</h2>
+            <div class="busqueda">
+                <p>Buscar por ID</p>
+                <form action="/item">
+                    <input type="text" name="id" id="id-input">
+                    <button type="submit">
+                        <span class="material-symbols-outlined">search</span>
+                    </button>
+                </form>
+                <p>Buscar por nombre</p>
+                <form action="/lista">
+                    <input type="text" name="nombre" id="nombre-input">
+                    <button type="submit">
+                        <span class="material-symbols-outlined">search</span>
+                    </button>
+                </form>
+            </div>
+        </section>
+    </main>
 </body>
 </html>

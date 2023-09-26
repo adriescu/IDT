@@ -3,9 +3,211 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+    <title>Lista de Items</title>
+    <link rel="stylesheet" href="/css/general.css">
+    <style>
+        body{
+            display: flex;
+            justify-content: center;
+            align-items: center5;
+        }
+
+        .tarjeta{
+            display: flex;
+            flex-wrap: wrap;
+            width: 90vw;
+            background-color: rgb(157, 157, 157);
+            justify-content: space-evenly;
+            padding: 1rem 0;
+            margin: 1rem 0;
+        }
+
+        .nombre-e-imagen img{
+            width: 100%;
+        }
+
+        .nombre-e-imagen h3{
+            margin: 0 0 1rem 0;
+        }
+
+        .nombre-e-imagen{
+            width: 15%;
+        }
+
+        .caracteristicas{
+            width: 75%;
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: space-evenly;
+            align-items: center;
+        }
+
+        .caracteristica{
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .fecha-a{
+            width: 20%;
+        }
+
+        .fecha-b{
+            width: 20%;
+        }
+
+        .categoria{
+            width: 20%;
+        }
+
+        .sector{
+            width: 20%;
+        }
+
+        .titulo-info{
+            font-size: 1.2rem;
+            margin: 0 0 1rem 0;
+            font-weight: bold;
+        }
+
+        .cuadro-info, .cuadro-info:link, .cuadro-info:visited{
+            color: black;
+            text-decoration: none;
+            text-align: center;
+            width: 100%;
+            border: 2px solid black;
+        }
+    </style>
 </head>
 <body>
-    
+    <main>
+        <section>
+
+            <div class="tarjeta">
+
+                <div class="nombre-e-imagen">
+                    <h3>Nombre</h3>
+                    <img src="https://www.charitycomms.org.uk/wp-content/uploads/2019/02/placeholder-image-square.jpg" alt="">
+                </div>
+
+                <div class="caracteristicas">
+
+                    <div class="fecha-a caracteristica">
+                        <p class="titulo-info">Fecha de ingreso</p>
+                        <div class="cuadro-info">
+                            <p>20/12/20</p>
+                        </div>
+                    </div>
+
+                    <div class="fecha-b caracteristica">
+                        <p class="titulo-info">Último mantenimiento</p>
+                        <div class="cuadro-info">
+                            <p>20/12/20</p>
+                        </div>
+                    </div>
+
+                    <div class="categoria caracteristica">
+                        <p class="titulo-info">Categoría</p>
+                        <a href="" class="cuadro-info">
+                            <p>Herramienta</p>
+                        </a>
+                    </div>
+
+                    <div class="sector caracteristica">
+                        <p class="titulo-info">Sector</p>
+                        <a href="" class="cuadro-info">
+                            <p>Taller</p>
+                        </a>
+                    </div>
+
+                </div>
+
+            </div>
+
+            <div class="tarjeta">
+
+                <div class="nombre-e-imagen">
+                    <h3>Nombre</h3>
+                    <img src="https://www.charitycomms.org.uk/wp-content/uploads/2019/02/placeholder-image-square.jpg" alt="">
+                </div>
+
+                <div class="caracteristicas">
+
+                    <div class="fecha-a caracteristica">
+                        <p class="titulo-info">Fecha de ingreso</p>
+                        <div class="cuadro-info">
+                            <p>20/12/20</p>
+                        </div>
+                    </div>
+
+                    <div class="fecha-b caracteristica">
+                        <p class="titulo-info">Último mantenimiento</p>
+                        <div class="cuadro-info">
+                            <p>20/12/20</p>
+                        </div>
+                    </div>
+
+                    <div class="categoria caracteristica">
+                        <p class="titulo-info">Categoría</p>
+                        <a href="" class="cuadro-info">
+                            <p>Herramienta</p>
+                        </a>
+                    </div>
+
+                    <div class="sector caracteristica">
+                        <p class="titulo-info">Sector</p>
+                        <a href="" class="cuadro-info">
+                            <p>Taller</p>
+                        </a>
+                    </div>
+
+                </div>
+
+            </div>
+
+            <div class="tarjeta">
+
+                <div class="nombre-e-imagen">
+                    <h3>Nombre</h3>
+                    <img src="https://www.charitycomms.org.uk/wp-content/uploads/2019/02/placeholder-image-square.jpg" alt="">
+                </div>
+
+                <div class="caracteristicas">
+
+                    <div class="fecha-a caracteristica">
+                        <p class="titulo-info">Fecha de ingreso</p>
+                        <div class="cuadro-info">
+                            <p>20/12/20</p>
+                        </div>
+                    </div>
+
+                    <div class="fecha-b caracteristica">
+                        <p class="titulo-info">Último mantenimiento</p>
+                        <div class="cuadro-info">
+                            <p>20/12/20</p>
+                        </div>
+                    </div>
+
+                    <div class="categoria caracteristica">
+                        <p class="titulo-info">Categoría</p>
+                        <a href="" class="cuadro-info">
+                            <p>Herramienta</p>
+                        </a>
+                    </div>
+
+                    <div class="sector caracteristica">
+                        <p class="titulo-info">Sector</p>
+                        <a href="" class="cuadro-info">
+                            <p>Taller</p>
+                        </a>
+                    </div>
+
+                </div>
+
+            </div>
+
+        </section>
+    </main>
 </body>
 </html>
