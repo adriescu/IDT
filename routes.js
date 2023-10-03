@@ -2,10 +2,11 @@ const express = require('express')
 const router = express.Router()
 const path = require('path')
 
-cIndex = require('./modules/controllers/indexController')
-cItem = require('./modules/controllers/itemController')
-cList = require('./modules/controllers/listController')
-cLogin = require('./modules/controllers/loginController')
+const cIndex = require('./modules/controllers/indexController')
+const cItem = require('./modules/controllers/itemController')
+const cList = require('./modules/controllers/listController')
+const cLogin = require('./modules/controllers/loginController')
+const cMantenimientos = require('./modules/controllers/mantenimientosController')
 
 router.get('/', cIndex.getIndex)
 
@@ -16,6 +17,8 @@ router.get('/item', cItem.getItem)
 router.get('/item/:id', cItem.getItemById)
 
 router.get('/list', cList.getList)
+
+router.get('/mantenimientos/:id', cMantenimientos.getMantenimientos)
 
 router.use((req, res) => {
     res.render("404")
