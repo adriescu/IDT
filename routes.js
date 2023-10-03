@@ -7,6 +7,8 @@ const cItem = require('./modules/controllers/itemController')
 const cList = require('./modules/controllers/listController')
 const cLogin = require('./modules/controllers/loginController')
 const cMantenimientos = require('./modules/controllers/mantenimientosController')
+const cAreasSectores = require('./modules/controllers/areasSectoresController')
+
 
 router.get('/', cIndex.getIndex)
 
@@ -17,6 +19,14 @@ router.get('/item', cItem.getItem)
 router.get('/item/:id', cItem.getItemById)
 
 router.get('/list', cList.getList)
+
+router.get('/areas', cAreasSectores.getAreas)
+router.post('/areas/eliminar/:id', cAreasSectores.postEliminarArea)
+router.get('/areas/crear', cAreasSectores.getCrearArea)
+router.post('/areas/crear', cAreasSectores.postCrearArea)
+
+
+router.get('/sectores', cAreasSectores.getSectores)
 
 router.get('/mantenimientos/:id', cMantenimientos.getMantenimientos)
 
