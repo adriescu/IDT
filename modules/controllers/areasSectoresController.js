@@ -9,9 +9,11 @@ module.exports = {
             res.render("area",{err: error})
         }
     },
+
     getSectores: (req, res) => {
         res.render("sectores",{})
     },
+
     postEliminarArea: async (req, res) => {
         try {
             await mAreasSectores.eliminarArea(req.params.id)
@@ -25,10 +27,17 @@ module.exports = {
             })
         }
     },
+
     getCrearArea: (req, res) => {
-        res.render("crearArea")
+        res.render("crearArea",{});
     },
-    postCrearArea: (req, res) => {
-        res.send("")
+
+    postCrearArea: async (req, res) => {
+        try {
+            await mAreasSectores.crearArea(req.body)
+            res.send({result: "success", error: null})
+        } catch (error) {
+            res.send({result: "error", error})
+        }
     }
 }

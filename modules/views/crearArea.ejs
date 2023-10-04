@@ -4,8 +4,92 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Crear area</title>
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+    <script src="/js/jquery-3.7.1.min.js"></script>
+    <style>
+        *{
+            font-family: sans-serif;
+        }
+        form{
+            display: flex;
+            flex-direction: column;
+        }
+        label{
+            width: 100%;
+            display: block;
+        }
+        input{
+            font-size: 2rem;
+            width: 100%;
+            margin: 1rem 0;
+        }
+        textarea{
+            font-size: 2rem;
+            width: 100%;
+            margin: 1rem 0;
+            resize: vertical;
+        }
+        .tarjeta{
+            width: 80vw;
+            margin: 0 auto;
+        }
+        .boton-submit{
+            border: 2px black solid;
+            background-color: #28a745;
+            border-radius: 5px;
+            font-size: 1.5rem;
+            padding: 1rem;
+            cursor: pointer;
+            align-self: flex-end;
+        }
+    </style>
 </head>
 <body>
-    
+    <main>
+        <div class="tarjeta">
+            <form action="" id="formulario-crear">
+                <div>
+                    <label for="nombre">Nombre</label>
+                    <input type="text" name="nombre" id="nombre">
+                </div>
+                <div>
+                    <label for="descripcion">Descripcion</label>
+                    <textarea name="descripcion" id="descripcion"></textarea>                
+                </div>
+            </form>
+            <button class="boton-submit" onclick="crear()">Crear</button>
+        </div>
+    </main>
+    <script>
+        async function crear(){
+            let obj = {
+                nombre: $("#nombre").val(),
+                descripcion: $("#descripcion").val()
+            }
+            console.log(obj);
+            try {
+                let result = await $.post(`/areas/crear`,obj)
+                if(result.result == "success"){
+                    Swal.fire({
+                    title: 'Area creada correctamente',
+                    icon: 'success',
+                    confirmButtonText: "Ok",
+                    confirmButtonColor: "#28a745"
+                    })
+                }else{
+                    Swal.fire({
+                    title: 'Hubo un error creando el area',
+                    text: `Error: ${result.error}`,
+                    icon: 'error',
+                    confirmButtonText: "Ok",
+                    confirmButtonColor: "#dc3545"
+                    })
+                }
+            } catch (error) {
+                console.log(error.message);
+            }
+            console.log("2");
+        }
+    </script>
 </body>
 </html>

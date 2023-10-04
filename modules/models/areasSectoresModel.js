@@ -8,3 +8,7 @@ exports.getAreas = function(){
 exports.eliminarArea = function(id){
     return queryMySql("DELETE FROM areas WHERE idArea = ?", [id])
 }
+
+exports.crearArea = function(obj){
+    return queryMySql("INSERT INTO areas (nombre, descripcion) VALUES (?,?)", [obj.nombre,obj.descripcion])
+}
