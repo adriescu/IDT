@@ -24,7 +24,8 @@ router.get('/areas', cAreasSectores.getAreas)
 router.post('/areas/eliminar/:id', cAreasSectores.postEliminarArea)
 router.get('/areas/crear', cAreasSectores.getCrearArea)
 router.post('/areas/crear', cAreasSectores.postCrearArea)
-
+router.get('/areas/editar/:id', cAreasSectores.getEditarArea)
+router.post('/areas/editar/:id', cAreasSectores.postEditarArea)
 
 router.get('/sectores', cAreasSectores.getSectores)
 

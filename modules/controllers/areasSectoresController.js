@@ -39,5 +39,36 @@ module.exports = {
         } catch (error) {
             res.send({result: "error", error})
         }
+    },
+
+    getEditarArea: async (req, res) => {
+        try {
+            let id = req.params.id
+            let area = await mAreasSectores.getAreaById(id)
+            res.render("editarArea", {area: area[0] ,error: null})
+        } catch (error) {
+            res.render("editarArea", {areas: "",error})
+        }
+    },
+
+    postEditarArea: async (req, res) => {
+        try {
+            let obj = {
+                nombre: req.body.nombre,
+                descripcion: req.body.descripcion,
+                idArea: req.params.id,
+            }
+            await mAreasSectores.editarArea(obj)
+            res.send({
+                result: "success",
+                error: null
+            })
+        } catch (error) {
+            res.send({
+                result: "success",
+                error
+            })
+        }
+        
     }
 }

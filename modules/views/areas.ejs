@@ -39,7 +39,7 @@
             font-size: 2rem;
         }
 
-        .terjeta{
+        .tarjeta{
             
         }
         
@@ -132,9 +132,9 @@
         function crear(){
            window.location = "/areas/crear"
         }
-        
-        function editar(){
-            
+
+        function editar(id) {
+            window.location = `/areas/editar/${id}`
         }
 
         async function eliminar(id){

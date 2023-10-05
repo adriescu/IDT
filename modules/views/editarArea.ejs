@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Crear area</title>
+    <title>Editar area</title>
     <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
     <script src="/js/jquery-3.7.1.min.js"></script>
     <style>
@@ -50,43 +50,64 @@
             cursor: pointer;
             align-self: flex-end;
         }
+        .boton-cancelar{
+            border: 2px black solid;
+            background-color: #dc3545;
+            border-radius: 5px;
+            font-size: 1.5rem;
+            padding: 1rem;
+            margin-right: 1rem;
+            cursor: pointer;
+            align-self: flex-end;
+        }
+        .botones{
+            width: 100%;
+            display: flex;
+            justify-content: flex-end;
+        }
     </style>
 </head>
 <body>
     <main>
+        <% if(error == null) { %>
         <div class="tarjeta">
             <form action="" method="POST">
                 <div>
                     <label for="nombre">Nombre</label>
-                    <input type="text" name="nombre" id="nombre">
+                    <input type="text" name="nombre" id="nombre" value="<%-area.nombre%>">
                 </div>
                 <div>
                     <label for="descripcion">Descripcion</label>
-                    <textarea name="descripcion" id="descripcion"></textarea>                
+                    <textarea name="descripcion" id="descripcion"><%-area.descripcion%></textarea>                
                 </div>
             </form>
-            <button class="boton-submit" onclick="crear()">Crear</button>
+            <div class="botones">
+                <button class="boton-cancelar" onclick="volver()">Cancelar</button>
+                <button class="boton-submit" onclick="editar()">Crear</button>
+            </div>
         </div>
+        <% } %>
     </main>
     <script>
-        async function crear(){
+        async function editar(){
             let obj = {
                 nombre: $("#nombre").val(),
                 descripcion: $("#descripcion").val()
             }
-            console.log(obj);
             try {
-                let result = await $.post(`/areas/crear`,obj)
+                let result = await $.post(`/areas/editar/<%-area.idArea%>`,obj)
                 if(result.result == "success"){
                     Swal.fire({
-                    title: 'Area creada correctamente',
+                    title: 'Area editada correctamente',
                     icon: 'success',
                     confirmButtonText: "Ok",
                     confirmButtonColor: "#28a745"
+                    }).then(()=>{
+                        window.location = "/areas"
                     })
                 }else{
                     Swal.fire({
-                    title: 'Hubo un error creando el area',
+                    title: 'Hubo un error editando el area',
                     text: `Error: ${result.error}`,
                     icon: 'error',
                     confirmButtonText: "Ok",
@@ -94,9 +115,18 @@
                     })
                 }
             } catch (error) {
-                console.log(error.message);
+                Swal.fire({
+                    title: 'Hubo un error',
+                    text: `Error: ${error.message}`,
+                    icon: 'error',
+                    confirmButtonText: "Ok",
+                    confirmButtonColor: "#28a745"
+                    })
             }
-            console.log("2");
+        }
+
+        function volver() {
+            window.location = "/areas"
         }
     </script>
 </body>
