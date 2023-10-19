@@ -7,7 +7,8 @@ module.exports = {
     getItemById: async (req, res) => {
         try{
             let resultado = await mItem.getItemById(req.params.id)
-            if(!(resultado == [])){
+            console.log(resultado[0]);
+            if(!(resultado[0] == undefined)){
                 res.render("item", {item: resultado[0]})
             }else{
                 res.render("404");

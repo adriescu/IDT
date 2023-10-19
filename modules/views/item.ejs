@@ -10,7 +10,7 @@
             box-sizing: border-box;
         }
         .item-container{
-            width: 100vw;
+            width: 98vw;
         }
         .item-container2{
             display: flex;
@@ -18,7 +18,8 @@
             color: red;
         }
         #item-imagen{
-            height: 100%;
+            height: 25rem;
+            margin: 2rem;
         }
         .info-container{
             display: flex;
@@ -55,6 +56,7 @@
 
         #boton-m, #boton-m:visited{
             text-decoration: none;
+            font-size: 2rem;
             padding: 1rem;
             margin: 2px;
             border-radius: 10px;
@@ -64,11 +66,11 @@
 
     </style>
 </head>
-<body>
+<body>  
     <section class="item-container">
         <div class="item-container2">
             <div class="image-container">
-                <img src="" alt="" id="item-imagen">
+                <img src="<%=item.imagen%>" alt="" id="item-imagen">
             </div>
             <div class="info-container">
                 <h2 id="nombre-item">
