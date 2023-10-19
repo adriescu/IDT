@@ -11,8 +11,25 @@ CREATE TABLE `areas` (
 -- inv.sectores definition
 
 CREATE TABLE `sectores` (
-  `idSector` int(11) NOT NULL AUTO_INCREMENT,
+  `id` int(11) NOT NULL AUTO_INCREMENT,
   `nombre` varchar(100) NOT NULL,
+  `descripcion` text DEFAULT NULL,
   `idArea` int(11) NOT NULL,
-  PRIMARY KEY (`idSector`)
+  PRIMARY KEY (`id`),
+  KEY `sectores_FK` (`idArea`),
+  CONSTRAINT `sectores_FK` FOREIGN KEY (`idArea`) REFERENCES `areas` (`idArea`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+
+-- inv.usuarios definition
+
+CREATE TABLE `usuarios` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `nombre` varchar(100) NOT NULL,
+  `apellido` varchar(100) NOT NULL,
+  `correo` varchar(100) NOT NULL,
+  `password` varchar(512) NOT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+
