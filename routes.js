@@ -4,7 +4,7 @@ const path = require('path')
 
 const cIndex = require('./modules/controllers/indexController')
 const cItem = require('./modules/controllers/itemController')
-const cList = require('./modules/controllers/listController')
+const cList = require('./modules/controllers/listaController')
 const cLogin = require('./modules/controllers/loginController')
 const cMantenimientos = require('./modules/controllers/mantenimientosController')
 const cAreasSectores = require('./modules/controllers/areasSectoresController')
@@ -18,7 +18,7 @@ router.post('/login', cLogin.postLogin)
 router.get('/item', cItem.getItem)
 router.get('/item/:id', cItem.getItemById)
 
-router.get('/list', cList.getList)
+router.get('/lista', cList.getLista)
 
 router.get('/areas', cAreasSectores.getAreas)
 router.post('/areas/eliminar/:id', cAreasSectores.postEliminarArea)
@@ -28,6 +28,8 @@ router.get('/areas/editar/:id', cAreasSectores.getEditarArea)
 router.post('/areas/editar/:id', cAreasSectores.postEditarArea)
 
 router.get('/sectores', cAreasSectores.getSectores)
+router.get('/sectores/editar/:id', cAreasSectores.getEditarSector)
+router.post('/sectores/editar/:id', cAreasSectores.postEditarSector)
 
 router.get('/mantenimientos/:id', cMantenimientos.getMantenimientos)
 

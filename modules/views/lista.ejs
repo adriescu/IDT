@@ -83,129 +83,50 @@
 <body>
     <main>
         <section>
+        <% for( let i = 0; i < items.length; i++ ) { %>
 
             <div class="tarjeta">
-
+            
                 <div class="nombre-e-imagen">
-                    <h3>Nombre</h3>
+                    <h3><%- items[i].nombre %></h3>
                     <img src="https://www.charitycomms.org.uk/wp-content/uploads/2019/02/placeholder-image-square.jpg" alt="">
                 </div>
-
+            
                 <div class="caracteristicas">
-
+                
                     <div class="fecha-a caracteristica">
                         <p class="titulo-info">Fecha de ingreso</p>
                         <div class="cuadro-info">
-                            <p>20/12/20</p>
+                            <p><%- items[i].fechaAdquisicion %></p>
                         </div>
                     </div>
-
+                
                     <div class="fecha-b caracteristica">
                         <p class="titulo-info">Último mantenimiento</p>
                         <div class="cuadro-info">
                             <p>20/12/20</p>
                         </div>
                     </div>
-
+                
                     <div class="categoria caracteristica">
                         <p class="titulo-info">Categoría</p>
                         <a href="" class="cuadro-info">
-                            <p>Herramienta</p>
+                            <p><%- items[i].categoria %></p>
                         </a>
                     </div>
-
+                
                     <div class="sector caracteristica">
                         <p class="titulo-info">Sector</p>
                         <a href="" class="cuadro-info">
-                            <p>Taller</p>
+                            <p><%- items[i].sector %></p>
                         </a>
                     </div>
-
+                
                 </div>
-
+            
             </div>
-
-            <div class="tarjeta">
-
-                <div class="nombre-e-imagen">
-                    <h3>Nombre</h3>
-                    <img src="https://www.charitycomms.org.uk/wp-content/uploads/2019/02/placeholder-image-square.jpg" alt="">
-                </div>
-
-                <div class="caracteristicas">
-
-                    <div class="fecha-a caracteristica">
-                        <p class="titulo-info">Fecha de ingreso</p>
-                        <div class="cuadro-info">
-                            <p>20/12/20</p>
-                        </div>
-                    </div>
-
-                    <div class="fecha-b caracteristica">
-                        <p class="titulo-info">Último mantenimiento</p>
-                        <div class="cuadro-info">
-                            <p>20/12/20</p>
-                        </div>
-                    </div>
-
-                    <div class="categoria caracteristica">
-                        <p class="titulo-info">Categoría</p>
-                        <a href="" class="cuadro-info">
-                            <p>Herramienta</p>
-                        </a>
-                    </div>
-
-                    <div class="sector caracteristica">
-                        <p class="titulo-info">Sector</p>
-                        <a href="" class="cuadro-info">
-                            <p>Taller</p>
-                        </a>
-                    </div>
-
-                </div>
-
-            </div>
-
-            <div class="tarjeta">
-
-                <div class="nombre-e-imagen">
-                    <h3>Nombre</h3>
-                    <img src="https://www.charitycomms.org.uk/wp-content/uploads/2019/02/placeholder-image-square.jpg" alt="">
-                </div>
-
-                <div class="caracteristicas">
-
-                    <div class="fecha-a caracteristica">
-                        <p class="titulo-info">Fecha de ingreso</p>
-                        <div class="cuadro-info">
-                            <p>20/12/20</p>
-                        </div>
-                    </div>
-
-                    <div class="fecha-b caracteristica">
-                        <p class="titulo-info">Último mantenimiento</p>
-                        <div class="cuadro-info">
-                            <p>20/12/20</p>
-                        </div>
-                    </div>
-
-                    <div class="categoria caracteristica">
-                        <p class="titulo-info">Categoría</p>
-                        <a href="" class="cuadro-info">
-                            <p>Herramienta</p>
-                        </a>
-                    </div>
-
-                    <div class="sector caracteristica">
-                        <p class="titulo-info">Sector</p>
-                        <a href="" class="cuadro-info">
-                            <p>Taller</p>
-                        </a>
-                    </div>
-
-                </div>
-
-            </div>
+        
+        <% } %>
 
         </section>
     </main>
