@@ -75,7 +75,7 @@
                 <div>
                     <label for="area">Area al que pertenece</label>
                     <select name="area" id="area">
-                        <option value="" disabled>Selecciona una opcion</option>
+                        <option selected="true" disabled="disabled">Selecciona una opcion</option>
                         <% for (let i = 0; i < areas.length; i++) { %>
                             
                             <option value="<%- areas[i].idArea %>"><%- areas[i].nombre %></option>
