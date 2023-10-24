@@ -73,12 +73,23 @@
         <div class="tarjeta">
             <form action="" method="POST">
                 <div>
+                    <label for="area">Area al que pertenece</label>
+                    <select name="area" id="area">
+                        <option value="" disabled>Selecciona una opcion</option>
+                        <% for (let i = 0; i < areas.length; i++) { %>
+                            
+                            <option value="<%- areas[i].idArea %>"><%- areas[i].nombre %></option>
+
+                        <% } %>   
+                    </select>
+                </div>
+                <div>
                     <label for="nombre">Nombre</label>
-                    <input type="text" name="nombre" id="nombre" value="<%-area.nombre%>">
+                    <input type="text" name="nombre" id="nombre" value="<%-sector.nombre%>">
                 </div>
                 <div>
                     <label for="descripcion">Descripcion</label>
-                    <textarea name="descripcion" id="descripcion"><%-area.descripcion%></textarea>                
+                    <textarea name="descripcion" id="descripcion"><%-sector.descripcion%></textarea>                
                 </div>
             </form>
             <div class="botones">
@@ -91,23 +102,24 @@
     <script>
         async function editar(){
             let obj = {
+                idArea: $("#area").val(),
                 nombre: $("#nombre").val(),
                 descripcion: $("#descripcion").val()
             }
             try {
-                let result = await $.post(`/areas/editar/<%-area.idArea%>`,obj)
+                let result = await $.post(`/sectores/editar/<%-sector.idSector%>`,obj)
                 if(result.result == "success"){
                     Swal.fire({
-                    title: 'Area editada correctamente',
+                    title: 'Sector editado correctamente',
                     icon: 'success',
                     confirmButtonText: "Ok",
                     confirmButtonColor: "#28a745"
                     }).then(()=>{
-                        window.location = "/areas"
+                        window.location = "/sectores"
                     })
                 }else{
                     Swal.fire({
-                    title: 'Hubo un error editando el area',
+                    title: 'Hubo un error editando el sector',
                     text: `Error: ${result.error}`,
                     icon: 'error',
                     confirmButtonText: "Ok",
@@ -126,7 +138,7 @@
         }
 
         function volver() {
-            window.location = "/areas"
+            window.location = "/sectores"
         }
     </script>
 </body>

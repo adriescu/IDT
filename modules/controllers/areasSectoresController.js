@@ -12,8 +12,8 @@ module.exports = {
 
     getSectores: async (req, res) => {
         try {
-            let resultados = await mAreasSectores.getSectores();
-            res.render("sectores",{sectores: resultados, err: false})
+            let sectores = await mAreasSectores.getSectores();
+            res.render("sectores",{sectores: sectores, err: false})
         } catch (error) {
             res.render("sectores",{err: error})
         }
@@ -87,10 +87,12 @@ module.exports = {
     getEditarSector: async (req, res) => {
         try {
             let id = req.params.id
-            let area = await mAreasSectores.getSectorById(id);
-            res.render("editarArea", {sector: sector[0] ,error: null})
+            let sector = await mAreasSectores.getSectorById(id);
+            let areas = await mAreasSectores.getAreas();
+            res.render("editarSector", {sector: sector[0], areas: areas,error: null})
         } catch (error) {
-            res.render("editarArea", {sector: "",error})
+            res.render("editarSector", {sector: "",error})
+            console.log(error);
         }
     },
 
@@ -102,6 +104,27 @@ module.exports = {
                 idArea: req.params.id,
             }
             await mAreasSectores.editarArea(obj)
+            res.send({
+                result: "success",
+                error: null
+            })
+        } catch (error) {
+            res.send({
+                result: "success",
+                error
+            })
+        }
+        
+    },
+    postEditarSector: async (req, res) => {
+        try {
+            let obj = {
+                idArea: req.body.idArea,
+                nombre: req.body.nombre,
+                descripcion: req.body.descripcion,
+                idSector: req.params.id,
+            }
+            await mAreasSectores.editarSector(obj)
             res.send({
                 result: "success",
                 error: null

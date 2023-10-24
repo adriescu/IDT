@@ -6,7 +6,7 @@ exports.getAreas = function(){
 }
 
 exports.getSectores = function(){
-    return queryMySql("SELECT * FROM sectores",[])
+    return queryMySql("SELECT sectores.idSector, sectores.nombre, sectores.descripcion, areas.nombre AS nombreArea FROM sectores INNER JOIN areas ON sectores.idArea = areas.idArea",[])
 }
 
 exports.getAreaById = function(id){
