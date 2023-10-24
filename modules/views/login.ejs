@@ -7,7 +7,11 @@
     <style>
         
         *{
-            font-family:Arial, Helvetica, sans-serif
+            font-family:Arial, Helvetica, sans-serif;
+            padding: 0;
+	        margin: 0;
+	        font-family: century gothic;
+	        text-align: center;
         }
 
         main{
@@ -19,22 +23,37 @@
         }
 
         form{
-            display: flex;
+            
+	padding: 50px 20px;
+	background-color: #ededed;
+	margin: calc(25% + 100px);
+	margin-top: 70px;
+	padding-top: 28px;
+	margin-bottom: 30px
+            /* display: flex;
             flex-direction: column;
             align-items: center;
             width: 50vw;
             min-width: 400px;
             background-color: cornflowerblue;
             padding: 2rem;
-            border-radius: 30px;
+            border-radius: 30px; */
         }
 
         form input{
-            font-size: 1.5rem;
+            width: calc(100% - 20px);
+	padding: 9px;
+	margin: auto;
+	margin-top: 12px;
+	font-size: 16px
+            /* font-size: 1.5rem;
             width: 70%;
-            border-radius: 20px;
+            height: 2rem;
+            border-radius: 5px;
             min-width: 300px;
             padding: 0.2rem;
+            padding-left: 1rem;
+            padding-right: 1rem; */
         }
 
         form label{
@@ -44,7 +63,13 @@
         }
 
         #boton-submit{
-            margin-top: 2rem;
+            /* margin-top: 2rem */
+        	background-color: #48e;
+	color: #fff;
+	width: calc(80% - 20px);
+	margin: 0 10%;
+	margin-top: 22px;
+	border: none;
         }
 
         .mensaje-importante{
@@ -58,9 +83,9 @@
     <main>
         <form action="/login" method="POST">
             <label for="">Ingrese su correo</label>
-            <input type="email" name="email" id="email">
+            <input type="email" name="email" id="email" placeholder="Ingrese su correo">
             <label for="">Ingrese su contraseña</label>
-            <input type="password" name="password" id="password">
+            <input type="password" name="password" id="password" placeholder="Ingrese su contraseña">
             <p class="mensaje-importante"><%= mensaje %></p>
             <input type="submit" value="Ingresar" id="boton-submit">
         </form>
