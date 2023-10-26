@@ -7,3 +7,7 @@ exports.getItems = function(){
 exports.getItemById = function(id){
     return queryMySql("SELECT * FROM items WHERE idItem = ?",[id])
 }
+
+exports.crearItems = function(item){
+    return  queryMySql("INSERT INTO items (nombre, sector, categoria, fechaAdquisicion) VALUES (?, ?, ?, ?)", [item.nombre, item.sector, item.categoria, item.fechaAdquisicion])
+}

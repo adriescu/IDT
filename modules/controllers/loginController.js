@@ -11,11 +11,10 @@ module.exports = {
             res.render('login', {mensaje: "El email ingresado no existe"})
         }else{
             if(req.body.password == respuesta[0].password){
-                res.send("Sesión iniciada")
+                res.render('index', {})
             }else{
                 res.render('login', {mensaje: "La contraseña ingresada no es correcta"})
             }
         }
-        
     },
 }

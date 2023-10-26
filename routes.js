@@ -15,8 +15,10 @@ router.get('/', cIndex.getIndex)
 router.get('/login', cLogin.getLogin)
 router.post('/login', cLogin.postLogin)
 
-router.get('/item', cItem.getItem)
+router.get('/item/crear', cItem.getCrearItem)
+router.post('/item/crear', cItem.postCrearItem)
 router.get('/item/:id', cItem.getItemById)
+router.get('/item', cItem.getItem)
 
 router.get('/lista', cList.getLista)
 
@@ -36,7 +38,5 @@ router.get('/mantenimientos/:id', cMantenimientos.getMantenimientos)
 router.use((req, res) => {
     res.render("404")
 })
-
-
 
 module.exports = router

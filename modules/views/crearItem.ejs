@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Crear Item</title>
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+    <script src="/js/jquery-3.7.1.min.js"></script>
+    
+    <style>
+
+    </style>
+
+</head>
+<body>  
+    <main>
+        <div class="tarjeta">
+            <form action="" method="POST">
+                <div>
+                    <label for="nombre">Nombre</label>
+                    <input type="text" name="nombre" id="nombre" required>
+                </div>
+                <div>
+                    <label for="sector">Sector</label>
+                    <select name="sector" id="sector" required>
+                        <option value="" disabled>Selecciona un sector</option>
+                        <% for( let i = 0; i < sectores.lenght; i++ ) { %>
+                        <option value="<%-sectores[i].idSector%>"><%-sectores[i].nombre%></option>
+                        <% } %>
+                    </select>
+                </div>
+                <div>
+                    <label for="categoria">Categoría</label>
+                    <select name="categoria" id="categoria" required>
+                        <option value="" disabled>Selecciona una categoría</option>
+                        <% for( let i = 0; i < categorias.lenght; i++ ) { %>
+                        <option value="<%-categorias[i].idCategoria%>"><%-categorias[i].nombre%></option>
+                        <% } %>
+                    </select>
+                </div>
+                <div>
+                    <label for="fechaAdq">Fecha adquisición</label>
+                    <input type="date" name="fechaAdq" id="fechaAdq">
+                </div>
+            </form>
+            <button class="boton-submit" onclick="crear()">Crear</button>
+            <button class="boton-submit" onclick="cancelar()">Cancelar</button>
+        </div>
+    </main>
+    <script>
+        async function crear(){
+            let obj = {
+                nombre: $("#nombre").val(),
+                sector: $("#sector").val(),
+                categoria: $("#categoria").val(),
+                fechaAdquisicion: $("#fechaAdq").val()
+
+            }
+            try {
+                let result = await $.post(`/item/crear`,obj)
+                if(result.result == "success"){
+                    Swal.fire({
+                        title: 'Item creado correctamente',
+                        icon: 'success',
+                        confirmButtonText: "Ok",
+                        confirmButtonColor: "#28a745"
+                    }).then(()=>{
+                        window.location = "/list"
+                    })
+                }else{
+                    Swal.fire({
+                        title: 'Hubo un error creando el item',
+                        text: `Error: ${result.error}`,
+                        icon: 'error',
+                        confirmButtonText: "Ok",
+                        confirmButtonColor: "#dc3545"
+                    })
+                }
+            } catch (error) {
+                Swal.fire({
+                    title: 'Hubo un error',
+                    text: `Error: ${error}`,
+                    icon: 'error',
+                    confirmButtonText: "Ok",
+                    confirmButtonColor: "#dc3545"
+                })
+            }
+        }
+
+        function cancelar(){
+            window.location = "/list"
+        }
+    </script>
+</body>
+</html>
