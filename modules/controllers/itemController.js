@@ -25,7 +25,8 @@ module.exports = {
             let sectores = await mSectores.getSectores();
             let categorias = await mCategorias.getCategorias();
             console.log(sectores);
-            res.render("crearItem", {sectores: sectores, categorias: categorias})
+            console.log(categorias);
+            res.render("crearItem", {sectores, categorias})
         } catch (error) {
             console.log(error);
         }
