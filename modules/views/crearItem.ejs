@@ -8,43 +8,105 @@
     <script src="/js/jquery-3.7.1.min.js"></script>
     
     <style>
-
+        *{
+            font-family: sans-serif;
+            box-sizing: border-box;
+        }
+        main{
+            display: flex;
+            justify-content: center;
+            width: 100vw;
+        }
+        .tarjeta{
+            width: 90%;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+        form{
+            display: flex;
+            flex-direction: column;
+            width: 80vw;
+            max-width: 800px;
+        }
+        .form-group{
+            width: 100%;
+        }
+        .button-group{
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            width: 100%;
+        }
+        label{
+            font-size: 2rem;
+            font-weight: bold;
+            display: block;
+            width: 100%;
+            margin: 1rem 0 0.5rem 0;
+        }
+        select{
+            width: 100%;
+            height: 3rem;
+            font-size: 1.6rem;
+        }
+        input{
+            width: 100%;
+            font-size: 1.6rem;
+            height: 3rem;
+        }
+        button, button:hover{
+            border: 2px black solid;
+            border-radius: 5px;
+            font-size: 2rem;
+            width: 20%;
+            margin-top: 2rem;
+            cursor: pointer;
+        }
+        #botonCancelar{
+            background-color: #dc3545;
+        }
+        #botonCrear{
+            background-color: #28a745;
+        }
     </style>
 
 </head>
-<body>  
+<body>
     <main>
         <div class="tarjeta">
             <form action="" method="POST">
-                <div>
+                <div class="form-group">
                     <label for="nombre">Nombre</label>
                     <input type="text" name="nombre" id="nombre" required>
                 </div>
-                <div>
+                <div class="form-group">
                     <label for="sector">Sector</label>
                     <select name="sector" id="sector" required>
-                        <option value="" disabled>Selecciona un sector</option>
-                        <% for( let i = 0; i < sectores.lenght; i++ ) { %>
+                        <option value="" disabled selected>Selecciona un sector</option>
+                        <% for( let i = 0; i < sectores.length; i++ ) { %>
                         <option value="<%-sectores[i].idSector%>"><%-sectores[i].nombre%></option>
                         <% } %>
                     </select>
                 </div>
-                <div>
+                <div class="form-group">
                     <label for="categoria">Categoría</label>
                     <select name="categoria" id="categoria" required>
-                        <option value="" disabled>Selecciona una categoría</option>
-                        <% for( let i = 0; i < categorias.lenght; i++ ) { %>
+                        <option value="" disabled selected>Selecciona una categoría</option>
+                        <% for( let i = 0; i < categorias.length; i++ ) { %>
                         <option value="<%-categorias[i].idCategoria%>"><%-categorias[i].nombre%></option>
                         <% } %>
                     </select>
                 </div>
-                <div>
+                <div class="form-group">
                     <label for="fechaAdq">Fecha adquisición</label>
                     <input type="date" name="fechaAdq" id="fechaAdq">
                 </div>
             </form>
-            <button class="boton-submit" onclick="crear()">Crear</button>
-            <button class="boton-submit" onclick="cancelar()">Cancelar</button>
+            <div class="button-group">
+                <button id="botonCancelar" class="boton-submit" onclick="cancelar()">Cancelar</button>
+                <button id="botonCrear" class="boton-submit" onclick="crear()">Crear</button>
+            </div>
         </div>
     </main>
     <script>
@@ -65,7 +127,7 @@
                         confirmButtonText: "Ok",
                         confirmButtonColor: "#28a745"
                     }).then(()=>{
-                        window.location = "/list"
+                        window.location = "/lista"
                     })
                 }else{
                     Swal.fire({
