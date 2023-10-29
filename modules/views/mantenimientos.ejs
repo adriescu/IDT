@@ -56,15 +56,14 @@
         }
 
         .obs1{
-            height: 10rem;
             padding: 10px;
             background-color: rgb(200, 200, 200);
             border-radius: 10px;
         }
 
-        .obs1 h4, .obs1 p{
+        /* .obs1 h4, .obs1 p{
             margin: 0;
-        }
+        } */
 
         .obs2{
             display: flex;
@@ -74,188 +73,119 @@
         .boton{
             border-radius: 2000px;
             border: 0px;
-            width: 3rem;
+            width: 3.5rem;
             cursor: pointer;
             margin: 1rem;
             aspect-ratio : 1 / 1;
+            border: 2px solid black;
         }
 
         .boton-editar{
-            background-color: green;
+            background-color: #ffc107;
             color: black;
         }
         .boton-eliminar{
             background-color: rgb(209, 17, 0);
             color: black;
         }
+        .boton-crear{
+            background-color: #06bd7a;
+            color: black;
+        }
+
+        #info{
+            display: flex;
+            flex-direction: row;
+            justify-content: space-between;
+            align-items: center;
+            margin: 0 3rem;
+        }
+
+        #item-info{
+            font-size: 2.5rem;
+        }
+
+        #crear{
+
+        }
+
     </style>
 </head>
 <body>
     <main>
-        <div class="tarjeta">
-            <div class="info">
-                <h4 class="titulos">
-                    Fecha:
-                </h4>
-                <p>
-
-                </p>
-                <h4 class="titulos">
-                    Responsable:
-                </h4>
-                <p>
-
-                </p>
-                <h4 class="titulos">
-                    Realizado por:
-                </h4>
-                <p>
-
-                </p>
+        <section id="info">
+            <div id="item-info">
+                <h2><%- item[0].nombre %></h2>
             </div>
-            <div class="descripcion">
-                <h4 class="titulos">
-                    Descripcion:
-                </h4>
-                <div class="descripcion-descripcion">
-                    
-                </div>
+            <div id="crear">
+                <a href="/mantenimientos/crear/<%- item[0].idItem %>">
+                    <button class="boton-crear boton" onclick="crear()">
+                        <span class="material-symbols-outlined">
+                            add
+                        </span>
+                    </button>
+                </a>
             </div>
-            <div class="obs">
-                <div class="obs1">
+        </section>
+        <% for( let i = 0; i < mantenimientos.length; i++ ) { %>
+            <div class="tarjeta">
+                <div class="info">
                     <h4 class="titulos">
-                        Observaciones:
+                        Fecha:
                     </h4>
                     <p>
-
+                        <%- mantenimientos[i].fecha %>
                     </p>
-                </div>
-                <div class="obs2">
-                    <button class="boton-editar boton">
-                        <span class="material-symbols-outlined">
-                            edit
-                        </span>
-                    </button>
-                    <button class="boton-eliminar boton">
-                        <span class="material-symbols-outlined">
-                            delete
-                        </span>
-                    </button>
-                </div>
-            </div>
-        </div>
-
-
-
-
-        <div class="tarjeta">
-            <div class="info">
-                <h4 class="titulos">
-                    Fecha:
-                </h4>
-                <p>
-
-                </p>
-                <h4 class="titulos">
-                    Responsable:
-                </h4>
-                <p>
-
-                </p>
-                <h4 class="titulos">
-                    Realizado por:
-                </h4>
-                <p>
-
-                </p>
-            </div>
-            <div class="descripcion">
-                <h4 class="titulos">
-                    Descripcion:
-                </h4>
-                <div class="descripcion-descripcion">
-                    
-                </div>
-            </div>
-            <div class="obs">
-                <div class="obs1">
                     <h4 class="titulos">
-                        Observaciones:
+                        Responsable:
                     </h4>
                     <p>
-
+                        <%- mantenimientos[i].responsable %>
                     </p>
-                </div>
-                <div class="obs2">
-                    <button class="boton-editar boton">
-                        <span class="material-symbols-outlined">
-                            edit
-                        </span>
-                    </button>
-                    <button class="boton-eliminar boton">
-                        <span class="material-symbols-outlined">
-                            delete
-                        </span>
-                    </button>
-                </div>
-            </div>
-        </div>
-
-
-
-
-        <div class="tarjeta">
-            <div class="info">
-                <h4 class="titulos">
-                    Fecha:
-                </h4>
-                <p>
-
-                </p>
-                <h4 class="titulos">
-                    Responsable:
-                </h4>
-                <p>
-
-                </p>
-                <h4 class="titulos">
-                    Realizado por:
-                </h4>
-                <p>
-
-                </p>
-            </div>
-            <div class="descripcion">
-                <h4 class="titulos">
-                    Descripcion:
-                </h4>
-                <div class="descripcion-descripcion">
-                    
-                </div>
-            </div>
-            <div class="obs">
-                <div class="obs1">
                     <h4 class="titulos">
-                        Observaciones:
+                        Realizado por:
                     </h4>
                     <p>
-
+                        <%- mantenimientos[i].realizadoPor %>
                     </p>
                 </div>
-                <div class="obs2">
-                    <button class="boton-editar boton">
-                        <span class="material-symbols-outlined">
-                            edit
-                        </span>
-                    </button>
-                    <button class="boton-eliminar boton">
-                        <span class="material-symbols-outlined">
-                            delete
-                        </span>
-                    </button>
+                <div class="descripcion">
+                    <h4 class="titulos">
+                        Descripcion:
+                    </h4>
+                    <p class="descripcion-descripcion">
+                        <%- mantenimientos[i].descripcion %>
+                    </p>
+                </div>
+                <div class="obs">
+                    <div class="obs1">
+                        <h4 class="titulos">
+                            Observaciones:
+                        </h4>
+                        <p>
+                            <%- mantenimientos[i].observaciones %>
+                        </p>
+                    </div>
+                    <div class="obs2">
+                        <button class="boton-editar boton">
+                            <span class="material-symbols-outlined">
+                                edit
+                            </span>
+                        </button>
+                        <button class="boton-eliminar boton">
+                            <span class="material-symbols-outlined">
+                                delete
+                            </span>
+                        </button>
+                    </div>
                 </div>
             </div>
-        </div>
+        <% } %>
     </main>
+    <script>
+        function crear(){
+            window.location = `/mantenimientos/crear/${req.params.id}`
+        }
+    </script>
 </body>
 </html>

@@ -33,7 +33,9 @@ router.get('/sectores', cAreasSectores.getSectores)
 router.get('/sectores/editar/:id', cAreasSectores.getEditarSector)
 router.post('/sectores/editar/:id', cAreasSectores.postEditarSector)
 
+router.get('/mantenimientos/crear/:id', cMantenimientos.getCrearMantenimiento)
 router.get('/mantenimientos/:id', cMantenimientos.getMantenimientos)
+router.post('/mantenimientos/crear/:id', cMantenimientos.postCrearMantenimiento)
 
 router.use((req, res) => {
     res.render("404")

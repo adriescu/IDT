@@ -85,7 +85,7 @@
                     <select name="sector" id="sector" required>
                         <option value="" disabled selected>Selecciona un sector</option>
                         <% for( let i = 0; i < sectores.length; i++ ) { %>
-                        <option value="<%-sectores[i].idSector%>"><%-sectores[i].nombre%></option>
+                        <option value="<%-sectores[i].idSector%>"><%-sectores[i].nombre%> - <%-sectores[i].nombreArea%></option>
                         <% } %>
                     </select>
                 </div>
@@ -116,7 +116,9 @@
                 sector: $("#sector").val(),
                 categoria: $("#categoria").val(),
                 fechaAdquisicion: $("#fechaAdq").val()
-
+            }
+            for (const key in obj) {
+                console.log(key);
             }
             try {
                 let result = await $.post(`/item/crear`,obj)

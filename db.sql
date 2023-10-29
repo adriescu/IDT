@@ -54,3 +54,16 @@ CREATE TABLE `items` (
   KEY `items_FK` (`sector`),
   CONSTRAINT `items_FK` FOREIGN KEY (`sector`) REFERENCES `sectores` (`idSector`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+
+-- inv.mantenimientos definition
+
+CREATE TABLE `mantenimientos` (
+  `idMantenimiento` int(11) NOT NULL AUTO_INCREMENT,
+  `fecha` datetime NOT NULL DEFAULT current_timestamp(),
+  `responsable` varchar(256) NOT NULL,
+  `realizadoPor` varchar(256) NOT NULL,
+  `descripcion` text NOT NULL,
+  `observaciones` text NOT NULL,
+  PRIMARY KEY (`idMantenimiento`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
