@@ -6,15 +6,35 @@
     <title>Document</title>
     <style>
         *{
+            margin: 0;
             font-family: sans-serif;
             box-sizing: border-box;
         }
+
+        body{
+            background-color: rgb(47, 45, 45);
+            min-height: 100vh;
+        }
+
         .item-container{
-            width: 98vw;
+            width: 100vw;
+            height: 80vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            margin: 1rem 0;
         }
         .item-container2{
+            width: 90vw;
             display: flex;
             flex-direction: row;
+            background-color: #5c5858;
+            border-radius: 30px;
+            box-shadow: 0.5rem 0.5rem black;
+            transition: all 0.5s;
+        }
+        .item-container2:hover{
+            box-shadow: 2rem 2rem black;
         }
         #item-imagen{
             height: 25rem;
@@ -24,10 +44,10 @@
             display: flex;
             flex-wrap: wrap;
             justify-content: space-around;
-            width: 100%;
+            width: 60%;
         }
         .image-container{
-            width: 60%;
+            width: 40%;
             text-align: center;
         }
         .info-item{
@@ -76,8 +96,10 @@
         }
 
     </style>
+    <%- include("includes/headerStyle.ejs") %>
 </head>
-<body>  
+<body>
+    <%- include("includes/header.ejs") %>
     <section class="item-container">
         <div class="item-container2">
             <div class="image-container">

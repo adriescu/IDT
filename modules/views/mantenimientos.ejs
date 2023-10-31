@@ -15,6 +15,7 @@
         body{
             margin: 0;
             padding: 0;
+            background-color: rgb(47, 45, 45);
         }
 
         .titulos{
@@ -24,11 +25,20 @@
         .tarjeta{
             width: 95vw;
             margin: 2rem auto;
-            background-color: rgb(220, 220, 220);
+            background-color: #5c5858;
             display: flex;
             flex-direction: row;
             flex-wrap: wrap;
             justify-content: space-around;
+            border-radius: 30px;
+            padding: 1rem;
+            box-shadow: 0.5rem 0.5rem black;
+            transition: all 0.5s;
+            color: white;
+            font-size: 1.5rem;
+        }
+        .tarjeta:hover{
+            box-shadow: 2rem 2rem black;
         }
 
         .info{
@@ -36,7 +46,7 @@
             margin: 1rem;
             padding: 10px;
             border-radius: 10px;
-            background-color: rgb(200, 200, 200);
+            background-color: rgb(47, 45, 45);
         }
 
         .descripcion{
@@ -44,7 +54,7 @@
             margin: 1rem;
             padding: 10px;
             border-radius: 10px;
-            background-color: rgb(200, 200, 200);
+            background-color: rgb(47, 45, 45);
         }
 
         .obs{
@@ -57,7 +67,7 @@
 
         .obs1{
             padding: 10px;
-            background-color: rgb(200, 200, 200);
+            background-color: rgb(47, 45, 45);
             border-radius: 10px;
         }
 
@@ -83,14 +93,26 @@
         .boton-editar{
             background-color: #ffc107;
             color: black;
+            width: 5rem;
+        }
+        .boton-editar span{
+            font-size: 3rem;
         }
         .boton-eliminar{
             background-color: rgb(209, 17, 0);
             color: black;
+            width: 5rem;
+        }
+        .boton-eliminar span{
+            font-size: 3rem;
         }
         .boton-crear{
             background-color: #06bd7a;
             color: black;
+            width: 5rem;
+        }
+        .boton-crear span{
+            font-size: 3rem;
         }
 
         #info{
@@ -103,6 +125,7 @@
 
         #item-info{
             font-size: 2.5rem;
+            color: white;
         }
 
         #crear{
@@ -110,8 +133,10 @@
         }
 
     </style>
+    <%- include("includes/headerStyle.ejs") %>
 </head>
 <body>
+    <%- include("includes/header.ejs") %>
     <main>
         <section id="info">
             <div id="item-info">

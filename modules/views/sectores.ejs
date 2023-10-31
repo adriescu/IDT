@@ -9,7 +9,12 @@
     <script src="js/jquery-3.7.1.min.js"></script>
     <style>
         *{
+            margin: 0;
             font-family: sans-serif;
+            box-sizing: border-box;
+        }
+        body{
+            background-color: rgb(47, 45, 45);
         }
         .add{
             display: flex;
@@ -44,13 +49,18 @@
         }
         
         .fila{
-            background-color: #d8d8d8;
+            background-color: #5c5858;
             display: grid;
             grid-template-columns: 1fr 1fr 3fr 1fr;
             grid-gap: 10px;
             grid-auto-rows: minmax(100px, auto);
             border-radius: 10px;
             margin: 1rem 20px;
+            box-shadow: 0.5rem 0.5rem black;
+            transition: all 0.5s;
+        }
+        .fila:hover{
+            box-shadow: 1rem 1rem black;
         }
 
         .sector, .area{
@@ -58,12 +68,14 @@
             justify-content: center;
             align-items: center;
             font-size: 1.5rem;
+            color: white;
         }
 
         .descripcion{
             display: flex;
             justify-content: center;
             align-items: center;
+            color: white;
         }
 
         .botones{
@@ -80,8 +92,10 @@
             background-color: #dc3545;
         }
     </style>
+    <%- include("includes/headerStyle.ejs") %>
 </head>
 <body>
+    <%- include("includes/header.ejs") %>
     <main>
         <div class="add">
             <button id="boton-add" class="boton" onclick="crear()">
