@@ -45,6 +45,7 @@
             flex-wrap: wrap;
             justify-content: space-around;
             width: 60%;
+            padding-bottom: 2rem;
         }
         .image-container{
             width: 40%;
@@ -53,12 +54,13 @@
         .info-item{
             margin: 0.5rem;
             background-color: gray;
-            width: 25%;
+            width: 40%;
             display: flex;
             flex-direction: column;
             justify-content: center;
             align-items: center;
             text-align: center;
+            border-radius: 20px;
         }
 
         .nombre-propiedad{
@@ -93,8 +95,13 @@
             display: inline-block;
             background-color: rgb(172, 172, 172);
             color: black;
+            font-weight: bold;
+            box-shadow: 0.5rem 0.5rem rgba(0, 0, 0, 0.3);
         }
 
+        #item-imagen{
+            border-radius: 20px;
+        }
     </style>
     <%- include("includes/headerStyle.ejs") %>
 </head>
@@ -103,7 +110,7 @@
     <section class="item-container">
         <div class="item-container2">
             <div class="image-container">
-                <img src="<%=item.imagen%>" alt="" id="item-imagen">
+                <img src="/images/placeholder.png" alt="" id="item-imagen">
             </div>
             <div class="info-container">
                 <h2 id="nombre-item">

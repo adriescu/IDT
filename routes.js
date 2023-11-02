@@ -30,6 +30,7 @@ router.get('/areas/editar/:id', cAreasSectores.getEditarArea)
 router.post('/areas/editar/:id', cAreasSectores.postEditarArea)
 
 router.get('/sectores', cAreasSectores.getSectores)
+router.get('/sectores/crear', cAreasSectores.getCrearSector)
 router.get('/sectores/editar/:id', cAreasSectores.getEditarSector)
 router.post('/sectores/editar/:id', cAreasSectores.postEditarSector)
 
