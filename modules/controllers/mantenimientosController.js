@@ -4,7 +4,9 @@ const mMantenimientos = require("../models/mantenimientosModel")
 module.exports = {
     getMantenimientos: async (req, res) => {
         let item = await mItem.getItemById(req.params.id)
-        let mantenimientos = await mMantenimientos.getMantenimientosByItemId();
+        console.log(item);
+        let mantenimientos = await mMantenimientos.getMantenimientosByItemId(item[0].idItem);
+        console.log(mantenimientos);
         res.render("mantenimientos", {item: item, mantenimientos: mantenimientos})
     },
 

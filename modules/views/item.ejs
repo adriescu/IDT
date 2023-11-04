@@ -19,6 +19,7 @@
         .item-container{
             width: 100vw;
             height: 80vh;
+            min-height: 400px;
             display: flex;
             justify-content: center;
             align-items: center;
@@ -37,8 +38,9 @@
             box-shadow: 2rem 2rem black;
         }
         #item-imagen{
-            height: 25rem;
+            width: 90%;
             margin: 2rem;
+            border-radius: 20px;
         }
         .info-container{
             display: flex;
@@ -49,6 +51,7 @@
         }
         .image-container{
             width: 40%;
+            height: 100%;
             text-align: center;
         }
         .info-item{
@@ -99,9 +102,6 @@
             box-shadow: 0.5rem 0.5rem rgba(0, 0, 0, 0.3);
         }
 
-        #item-imagen{
-            border-radius: 20px;
-        }
     </style>
     <%- include("includes/headerStyle.ejs") %>
 </head>

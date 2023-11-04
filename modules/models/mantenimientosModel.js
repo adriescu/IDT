@@ -5,5 +5,5 @@ exports.crearMantenimiento = function(m) {
 }
 
 exports.getMantenimientosByItemId = function(id) {
-    return queryMySql("SELECT * FROM mantenimientos WHERE mantenimientos.idItem")
+    return queryMySql("SELECT * FROM mantenimientos WHERE mantenimientos.idItem = ?",[id])
 }
