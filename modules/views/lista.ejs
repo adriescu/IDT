@@ -90,6 +90,43 @@
             border: 2px solid black;
             border-radius: 5px;
         }
+
+        @media (width <= 768px) {
+            .tarjeta{
+                width: 95vw;
+                justify-content: center;
+            }
+            .nombre-e-imagen{
+                width: 100%;
+                text-align: center;
+            }
+            .nombre-e-imagen img{
+                width: 60%;
+                border-radius: 20px;
+            }
+            .caracteristicas{
+                margin-top: 1rem;
+                width: 100%;
+            }
+            .caracteristica{
+                margin-top: 1rem;
+            }
+            .fecha-a{
+                width: 90%;
+            }
+
+            .fecha-b{
+                width: 90%;
+            }
+
+            .categoria{
+                width: 40%;
+            }
+
+            .sector{
+                width: 40%;
+            }
+        }
     </style>
     <%- include("includes/headerStyle.ejs") %>
 </head>
@@ -116,7 +153,7 @@
                     </div>
                 
                     <div class="fecha-b caracteristica">
-                        <p class="titulo-info">Último mantenimiento</p>
+                        <p class="titulo-info">Últ. mantenimiento</p>
                         <div class="cuadro-info">
                             <p>20/12/20</p>
                         </div>

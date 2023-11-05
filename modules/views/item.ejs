@@ -18,7 +18,6 @@
 
         .item-container{
             width: 100vw;
-            height: 80vh;
             min-height: 400px;
             display: flex;
             justify-content: center;
@@ -102,6 +101,25 @@
             box-shadow: 0.5rem 0.5rem rgba(0, 0, 0, 0.3);
         }
 
+        @media (width <= 768px) {
+            .item-container2{
+                width: 95vw;
+                flex-direction: column;
+                align-items: center;
+            }
+            #item-imagen{
+                margin: 1rem 0 0 0;
+            }
+            .image-container{
+                width: 90%;
+            }
+            .info-container{
+                width: 90%;
+            }
+            .info-item{
+                width: 90%;
+            }
+        }
     </style>
     <%- include("includes/headerStyle.ejs") %>
 </head>

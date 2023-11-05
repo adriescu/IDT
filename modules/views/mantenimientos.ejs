@@ -131,7 +131,27 @@
         #crear{
 
         }
-
+        @media (width <= 768px) {
+            .tarjeta{
+                flex-direction: column;
+                margin-top: 0.5rem;
+            }
+            .info{
+                width: 100%;
+                margin: 0.2rem 0 0 0;
+            }
+            .descripcion{
+                width: 100%;
+                margin: 1rem 0 0 0;
+            }
+            .obs{
+                width: 100%;
+                margin: 1rem 0 0 0;
+            }
+            #item-info h2{
+            margin: 2rem 0;
+            }
+        }
     </style>
     <%- include("includes/headerStyle.ejs") %>
 </head>
