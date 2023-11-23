@@ -27,6 +27,7 @@
             border-radius: 30px;
             box-shadow: 0.5rem 0.5rem black;
             transition: all 0.5s;
+            cursor: pointer;
         }
         .tarjeta:hover{
             box-shadow: 2rem 2rem black;
@@ -136,11 +137,11 @@
         <section>
         <% for( let i = 0; i < items.length; i++ ) { %>
 
-            <div class="tarjeta">
+            <div class="tarjeta" onclick="irAlItem(<%-items[i].idItem%>)">
             
                 <div class="nombre-e-imagen">
                     <h3><%- items[i].nombre %></h3>
-                    <img src="https://www.charitycomms.org.uk/wp-content/uploads/2019/02/placeholder-image-square.jpg" alt="">
+                    <img src="<% if(items[i].imagen != ''){ %>/uploads/<%- items[i].imagen %><% }else{ %>/images/placeholder.png<% } %>" alt="">
                 </div>
             
                 <div class="caracteristicas">
@@ -181,5 +182,10 @@
 
         </section>
     </main>
+    <script>
+        function irAlItem(id){
+            window.location = `/item/${id}`
+        }
+    </script>
 </body>
 </html>

@@ -131,6 +131,11 @@
         #crear{
 
         }
+        
+        #titulo, #titulo:visited{
+                color: white;
+                text-decoration: none;
+            }
         @media (width <= 768px) {
             .tarjeta{
                 flex-direction: column;
@@ -160,7 +165,7 @@
     <main>
         <section id="info">
             <div id="item-info">
-                <h2><%- item[0].nombre %></h2>
+                <h2><a href="/item/<%- item[0].idItem %>" id="titulo"><%- item[0].nombre %></a></h2>
             </div>
             <div id="crear">
                 <a href="/mantenimientos/crear/<%- item[0].idItem %>">

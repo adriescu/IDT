@@ -56,7 +56,7 @@
             font-size: 1.6rem;
             height: 3rem;
         }
-        button, button:hover{
+        .boton-submit, .boton-submit:hover{
             border: 2px black solid;
             border-radius: 5px;
             font-size: 2rem;
@@ -85,58 +85,76 @@
             <div id="formulario">
                 <div class="form-group">
                     <label for="nombre">Nombre</label>
-                    <input type="text" name="nombre" id="nombre" required>
+                    <input type="text" name="nombre" id="nombre" value="<%-item.nombre%>" required>
                 </div>
                 <div class="form-group">
                     <label for="sector">Sector</label>
                     <select name="sector" id="sector" required>
-                        <option value="" disabled selected>Selecciona un sector</option>
+                        <option value="" disabled>Selecciona un sector</option>
                         <% for( let i = 0; i < sectores.length; i++ ) { %>
-                        <option value="<%-sectores[i].idSector%>"><%-sectores[i].nombre%> - <%-sectores[i].nombreArea%></option>
+                        <option value="<%-sectores[i].idSector%>"<% if(sectores[i].idSector == item.sector){ %>selected<% } %>><%-sectores[i].nombre%> - <%-sectores[i].nombreArea%></option>
                         <% } %>
                     </select>
                 </div>
                 <div class="form-group">
                     <label for="categoria">Categoría</label>
                     <select name="categoria" id="categoria" required>
-                        <option value="" disabled selected>Selecciona una categoría</option>
+                        <option value="" disabled>Selecciona una categoría</option>
                         <% for( let i = 0; i < categorias.length; i++ ) { %>
-                        <option value="<%-categorias[i].idCategoria%>"><%-categorias[i].nombre%></option>
+                        <option value="<%-categorias[i].idCategoria%>"<% if(categorias[i].idCategoria == item.categoria){ %>selected<% } %>><%-categorias[i].nombre%></option>
                         <% } %>
                     </select>
                 </div>
                 <div class="form-group">
                     <label for="fechaAdq">Fecha adquisición</label>
-                    <input type="date" name="fechaAdq" id="fechaAdq">
+                    <input type="date" name="fechaAdq" id="fechaAdq" value="<%-item.fechaAdquisicion%>">
                 </div>
                 <div class="form-group">
                     <label for="imagen">Imagen</label>
                     <input type="file" name="imagen" id="imagen" class="form-control" onload="ocultar(); eliminarArchivo()" onchange="loadFile(event); ocultar()">
-                    <img id="output" style="display: none;">
-                    <button class="btn btn-danger" id="boton" style="display: none;" onclick="eliminarArchivo(); unloadFile()">Eliminar Imagen</button>
+                    <img id="output" src="<%if(item.imagen != ''){%>/uploads/<%- item.imagen %><%}%>">
+                    <button class="btn btn-danger boton-submit" id="boton" style="<%if (item.imagen == ''){%> display: none;<%}%>" onclick="eliminarArchivo(); unloadFile(); imagenVacia()">Eliminar Imagen</button>
                 </div>
             </div>
             <div class="button-group">
                 <button id="botonCancelar" class="boton-submit" onclick="cancelar()">Cancelar</button>
-                <button id="botonCrear" class="boton-submit" onclick="crear()">Crear</button>
+                <button id="botonCrear" class="boton-submit" onclick="guardar()">Guardar</button>
             </div>
         </div>
     </main>
     <script>
 
-        async function crear() {
+        let sinImagen = false;
+            
+        function imagenVacia(){
+            if(!sinImagen) sinImagen = true;
+        }
+
+        async function guardar() {
             var image = document.getElementById('imagen').files[0];
+            let f = document.getElementById("imagen")
             var form_data = new FormData();
-            if(image){
+            if(f.files.length > 0){
                 form_data.append('imagen', image);
+                form_data.append('imagenAnterior', "<%-item.imagen%>");
+            }else{
+                if (sinImagen){
+                    form_data.append('imagen', null);
+                    form_data.append('imagenAnterior', "<%-item.imagen%>");
+                }else{
+                    form_data.append('imagen', "<%-item.imagen%>");
+                }
             }
             form_data.append('nombre', document.getElementById('nombre').value);
             form_data.append('sector', document.getElementById('sector').value);
             form_data.append('categoria', document.getElementById('categoria').value);
-            form_data.append('fechaAdq', document.getElementById('fechaAdq').value);
+            form_data.append('fechaAdquisicion', document.getElementById('fechaAdq').value);
+            form_data.append('id', "<%-item.idItem%>");
+
+            console.log("<%=item.idItem%>");
 
             result = await $.post({
-                url : "/item/crear",
+                url : "/item/editar/<%-item.idItem%>",
                 type: "POST",
                 data : form_data,
                 processData: false,
@@ -149,7 +167,7 @@
                 text: result.text,
                 confirmButtonText: 'OK',
             }).then(() => {
-                if (result.type == "success") window.location = "/lista";
+                if (result.type == "success") window.location = "/item/<%-item.idItem%>";
             });
         }
 
@@ -193,7 +211,7 @@
         // }
 
         function cancelar(){
-            window.location = "/lista"
+            document.referrer ? window.location = document.referrer : history.back();
         }
 
         function eliminarArchivo(){ 

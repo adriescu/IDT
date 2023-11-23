@@ -119,6 +119,11 @@
             .info-item{
                 width: 90%;
             }
+            #boton-container{
+                flex-direction: column;
+                justify-content: center;
+                align-items: center;
+            }
         }
     </style>
     <%- include("includes/headerStyle.ejs") %>
@@ -128,7 +133,7 @@
     <section class="item-container">
         <div class="item-container2">
             <div class="image-container">
-                <img src="/images/placeholder.png" alt="" id="item-imagen">
+                <img src="<% if(item.imagen != ''){ %>/uploads/<%- item.imagen %><% }else{ %>/images/placeholder.png<% } %>" alt="imagen del item" id="item-imagen">
             </div>
             <div class="info-container">
                 <h2 id="nombre-item">
@@ -163,13 +168,22 @@
                         Fecha últ. mantenimiento:
                     </div>
                     <div class="valor-propiedad">
-                        <%= item.nombre %>
+                        <% if (mantenimientos[mantenimientos.length - 1].fecha == null) { %>
+                         -
+                        <% }else{ %>
+                        <%= mantenimientos[mantenimientos.length - 1].fecha %>
+                        <% } %>
                     </div>
                 </div>
                 <div id="boton-container">
                     <a href="/mantenimientos/<%=item.idItem%>" id="boton-m">
                         Ver mantenimientos
                     </a>
+                    <% if (auth) { %>
+                        <a href="/item/editar/<%=item.idItem%>" id="boton-m">
+                            Editar
+                        </a>
+                    <% } %>
                 </div>
             </div>
         </div>

@@ -8,7 +8,12 @@ module.exports = {
         }
     },
     cerrarSesion: (req, res, next) => {
-        req.session.destroy();
-        res.send("Sesión cerrada")
+        req.session.destroy(err => {
+            if (!err) {
+                res.redirect('/')
+            } else {
+                console.log(err)
+            }
+        })
     }
 }
