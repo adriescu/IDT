@@ -18,7 +18,7 @@ module.exports = {
             if(!(resultado[0] == undefined)){
                 res.render("item", {item: resultado[0], mantenimientos: mantenimientos, auth: req.session.isAuth})
             }else{
-                res.render("404");
+                res.render("itemInexistente", {auth: req.session.isAuth});
             }
         }catch(error){
             res.send(`Hubo un error: ${error}`)
@@ -31,7 +31,7 @@ module.exports = {
             let categorias = await mCategorias.getCategorias();
             console.log(sectores);
             console.log(categorias);
-            res.render("crearItem", {sectores, categorias})
+            res.render("crearItem", {sectores, categorias, auth: req.session.isAuth})
         } catch (error) {
             console.log(error);
         }
@@ -79,7 +79,7 @@ module.exports = {
             let sectores = await mSectores.getSectores()
             let categorias = await mCategorias.getCategorias()
             console.log(item);
-            res.render("editarItem", {item: item[0], sectores: sectores, categorias: categorias})
+            res.render("editarItem", {item: item[0], sectores: sectores, categorias: categorias, auth: req.session.isAuth})
         } catch (error) {
             console.log(error)
             res.redirect("/")

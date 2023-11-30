@@ -14,6 +14,10 @@ exports.getItemById = function(id){
     return queryMySql("SELECT items.idItem, items.nombre, sectores.nombre AS nombreSector, sectores.idSector AS sector, categorias.nombre AS nombreCategoria, categorias.idCategoria AS categoria, items.fechaAdquisicion, items.imagen FROM ((items INNER JOIN sectores ON items.sector = sectores.idSector) INNER JOIN categorias ON items.categoria = categorias.idCategoria) WHERE items.idItem = ?",[id])
 }
 
+exports.getItemsByName = function(nombre){
+    return queryMySql("SELECT items.idItem, items.nombre, sectores.nombre AS sectorNombre, categorias.nombre AS categoriaNombre, items.fechaAdquisicion, items.imagen FROM ((items INNER JOIN sectores ON items.sector = sectores.idSector) INNER JOIN categorias ON items.categoria = categorias.idCategoria) WHERE items.nombre LIKE ?",[nombre])
+}
+
 exports.crearItems = function(item){
     return queryMySql("INSERT INTO items (nombre, sector, categoria, fechaAdquisicion, imagen) VALUES (?, ?, ?, ?, ?)", [item.nombre, item.sector, item.categoria, item.fechaAdquisicion, item.imagen])
 }

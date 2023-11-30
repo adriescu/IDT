@@ -49,15 +49,20 @@ router.post('/areas/editar/:id', cAuth.isAuth, cAreasSectores.postEditarArea)
 
 router.get('/sectores', cAuth.isAuth, cAreasSectores.getSectores)
 router.get('/sectores/crear', cAuth.isAuth, cAreasSectores.getCrearSector)
+router.post('/sectores/crear', cAuth.isAuth, cAreasSectores.postCrearSector)
 router.get('/sectores/editar/:id', cAuth.isAuth, cAreasSectores.getEditarSector)
 router.post('/sectores/editar/:id', cAuth.isAuth, cAreasSectores.postEditarSector)
+router.post('/sectores/eliminar/:id', cAuth.isAuth, cAreasSectores.postEliminarSector)
 
 router.get('/mantenimientos/crear/:id', cAuth.isAuth, cMantenimientos.getCrearMantenimiento)
 router.get('/mantenimientos/:id', cMantenimientos.getMantenimientos)
 router.post('/mantenimientos/crear/:id', cAuth.isAuth, cMantenimientos.postCrearMantenimiento)
+router.get('/mantenimientos/editar/:id', cAuth.isAuth, cMantenimientos.getEditarMantenimiento)
+router.post('/mantenimientos/editar/:id', cAuth.isAuth, cMantenimientos.postEditarMantenimiento)
+router.post('/mantenimientos/eliminar/:id', cAuth.isAuth, cMantenimientos.postEliminarMantenimiento)
 
 router.use((req, res) => {
-    res.render("404")
+    res.render("404", {auth: req.session.isAuth})
 })
 
 module.exports = router

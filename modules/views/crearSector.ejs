@@ -1,0 +1,132 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Crear area</title>
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+    <script src="/js/jquery-3.7.1.min.js"></script>
+    <style>
+        *{
+            margin: 0;
+            font-family: sans-serif;
+            box-sizing: border-box;
+        }
+        body{
+            background-color: rgb(47, 45, 45);
+        }
+        main{
+            padding: 2rem 0;
+            color: white;
+        }
+        form{
+            display: flex;
+            flex-direction: column;
+            width: 100%;
+        }
+        label{
+            width: 100%;
+            display: block;
+            font-weight: bold;
+            font-size: 1.5rem;
+        }
+        input, input:focus{
+            font-size: 2rem;
+            width: 100%;
+            margin: 1rem 0;
+            padding: 0.5rem 1rem;
+            border-radius: 20px;
+            border: 4px solid black;
+            outline: 0;
+        }
+        textarea{
+            font-size: 2rem;
+            width: 100%;
+            margin: 1rem 0;
+            resize: vertical;
+            padding: 0.5rem 1rem;
+            border-radius: 20px;
+            border: 4px solid black;
+            outline: 0;
+        }
+        .tarjeta{
+            width: 80vw;
+            margin: 0 auto;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+        .boton-submit{
+            border: 4px black solid;
+            background-color: #28a745;
+            border-radius: 20px;
+            font-size: 1.5rem;
+            padding: 1rem;
+            cursor: pointer;
+            align-self: flex-end;
+        }
+    </style>
+    <%- include("includes/headerStyle.ejs") %>
+</head>
+<body>
+    <%- include("includes/header.ejs") %>
+    <main>
+        <div class="tarjeta">
+            <form action="" method="POST">
+                <div>
+                    <label for="nombre">Nombre</label>
+                    <input type="text" name="nombre" id="nombre">
+                </div>
+                <div>
+                    <label for="area">Area al que pertenece</label>
+                    <select name="area" id="area">
+                        <option selected="true" disabled="disabled">Selecciona una opcion</option>
+                        <% for (let i = 0; i < areas.length; i++) { %>
+                            
+                            <option value="<%- areas[i].idArea %>"><%- areas[i].nombre %></option>
+
+                        <% } %>   
+                    </select>
+                </div>
+                <div>
+                    <label for="descripcion">Descripcion</label>
+                    <textarea name="descripcion" id="descripcion"></textarea>                
+                </div>
+            </form>
+            <button class="boton-submit" onclick="crear()">Crear</button>
+        </div>
+    </main>
+    <script>
+        async function crear(){
+            let obj = {
+                idArea: $("#area").val(),
+                nombre: $("#nombre").val(),
+                descripcion: $("#descripcion").val()
+            }
+            try {
+                let result = await $.post(`/sectores/crear`,obj)
+                if(result.result == "success"){
+                    Swal.fire({
+                    title: 'Sector creado correctamente',
+                    icon: 'success',
+                    confirmButtonText: "Ok",
+                    confirmButtonColor: "#28a745"
+                    }).then(()=>{
+                        window.location = "/sectores"
+                    })
+                }else{
+                    Swal.fire({
+                    title: 'Hubo un error creando el sector',
+                    text: `Error: ${result.error}`,
+                    icon: 'error',
+                    confirmButtonText: "Ok",
+                    confirmButtonColor: "#dc3545"
+                    })
+                }
+            } catch (error) {
+                console.log(error.message);
+            }
+        }
+    </script>
+</body>
+</html>

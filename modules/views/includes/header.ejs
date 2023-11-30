@@ -25,8 +25,14 @@
 
     </div>
     <div class="usuario">
-        <div>
-            <img src="/images/pf.jpg" alt="">
-        </div>
+        <a id="sesion" href="<% if(auth){ %>/cerrarSesion<% }else{ %>/login<%}%>">
+            <div class="div1">
+                <% if (auth) { %>
+                    Cerrar Sesión
+                <% }else{ %>
+                    Iniciar Sesión
+                <% } %>
+            </div>
+        </a>
     </div>
 </header>

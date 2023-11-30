@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        *{
+            margin: 0;
+            font-family: sans-serif;
+            box-sizing: border-box;
+        }
+
+        body{
+            background-color: rgb(47, 45, 45);
+            min-height: 100vh;
+        }
+
+        .item-container{
+            width: 100vw;
+            min-height: 400px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            margin: 1rem 0;
+        }
+
+        #mensaje{
+            font-size: 3rem;
+            color: rgb(255, 25, 0)
+        }
+        @media (width <= 768px) {
+
+        }
+    </style>
+    <%- include("includes/headerStyle.ejs") %>
+</head>
+<body>
+    <%- include("includes/header.ejs") %>
+    <section class="item-container">
+        <h2 id="mensaje">El item que busca no existe</h2>
+    </section>
+</body>
+</html>

@@ -4,8 +4,10 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Mantenimientos</title>
-    <link rel="stylesheet" href="css/general.css">
+    <!-- <link rel="stylesheet" href="css/general.css"> -->
     <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@24,400,0,0" />
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
     <style>
         *{
             font-family: sans-serif;
@@ -216,18 +218,20 @@
                             <%- mantenimientos[i].observaciones %>
                         </p>
                     </div>
-                    <div class="obs2">
-                        <button class="boton-editar boton">
-                            <span class="material-symbols-outlined">
-                                edit
-                            </span>
-                        </button>
-                        <button class="boton-eliminar boton">
-                            <span class="material-symbols-outlined">
-                                delete
-                            </span>
-                        </button>
-                    </div>
+                    <% if (auth) { %>
+                        <div class="obs2">
+                            <button class="boton-editar boton" onclick="editar('<%-mantenimientos[i].idMantenimiento%>')">
+                                <span class="material-symbols-outlined">
+                                    edit
+                                </span>
+                            </button>
+                            <button class="boton-eliminar boton" onclick="eliminar('<%-mantenimientos[i].idMantenimiento%>')">
+                                <span class="material-symbols-outlined">
+                                    delete
+                                </span>
+                            </button>
+                        </div>
+                    <% } %>
                 </div>
             </div>
         <% } %>
@@ -237,12 +241,45 @@
             window.location = `/mantenimientos/crear/${req.params.id}`
         }
 
-        function editar(){
-
+        function editar(id){
+            window.location = `/mantenimientos/editar/${id}`
         }
 
-        function eliminar(){
-            
+        function eliminar(id){
+            Swal.fire({
+                title: '¿Eliminar el mantenimiento?',
+                text: 'Esto no se puede deshacer',
+                icon: 'warning',
+                showCancelButton: true,
+                showConfirmButton: true,
+                confirmButtonText: "Eliminar",
+                cancelButtonText: "Cancelar",
+                confirmButtonColor: "#dc3545",
+                cancelButtonColor: "#28a745"
+            }).then(async (result) => {
+                if(result.isConfirmed){
+                    let res = await $.post(`/mantenimientos/eliminar/${parseInt(id)}`)
+                    console.log(res);
+                    if (res.result == "success") {
+                        Swal.fire({
+                            title: 'El mantenimiento se ha eliminado con éxito',
+                            text: '✅',
+                            icon: 'success',
+                            confirmButtonText: 'Ok'
+                        }).then(()=>{
+                            window.location.reload()
+                        })
+                    }else if(res.result == "error"){
+                        console.log(res.error);
+                        Swal.fire({
+                            title: 'Hubo un error',
+                            text: `Hubo un error eliminando el mantenimiento: ${res.error.code}`,
+                            icon: 'error',
+                            confirmButtonText: 'Ok'
+                        })
+                    }
+                }
+            })
         }
     </script>
 </body>

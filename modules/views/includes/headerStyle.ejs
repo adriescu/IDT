@@ -29,13 +29,12 @@
     height: 100%;
     }
     
-    /* Change the color of links on hover */
     .topnav a:hover {
     background-color: #ddd;
     color: black;
     }
     
-    /* Add a color to the active/current link */
+    /* Añadir un color al link activo */
     .topnav a.active {
     background-color: #04AA6D;
     color: white;
@@ -57,12 +56,20 @@
         height: 80%;
         margin: 0 2rem;
     }
-    .usuario img{
+    .usuario a{
+        color: #f2f2f2;
+        text-align: center;
+        padding: 0 1rem;
+        text-decoration: none;
+        font-size: 1.5rem;
         height: 100%;
-        border-radius: 500px;
-        border: 2px solid black;
     }
 
+    .usuario a:hover{
+        background-color: #ddd;
+        color: black;
+    }
+    
     @media (width <= 768px) {
         .topnav{
             display: none;

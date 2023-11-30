@@ -1,0 +1,149 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Crear mantenimiento</title>
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+    <script src="/js/jquery-3.7.1.min.js"></script>
+    <style>
+        *{
+            margin: 0;
+            font-family: sans-serif;
+            box-sizing: border-box;
+        }
+        form{
+            display: flex;
+            flex-direction: column;
+            width: 100%;
+        }
+        label{
+            width: 100%;
+            display: block;
+            font-weight: bold;
+            font-size: 1.5rem;
+        }
+        input{
+            font-size: 2rem;
+            width: 100%;
+            margin: 1rem 0;
+            padding: 0 1rem;
+        }
+        textarea{
+            font-size: 2rem;
+            width: 100%;
+            margin: 1rem 0;
+            resize: vertical;
+        }
+        .tarjeta{
+            width: 80vw;
+            margin: 0 auto;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+        .boton-submit{
+            border: 2px black solid;
+            background-color: #28a745;
+            border-radius: 5px;
+            font-size: 1.5rem;
+            padding: 1rem;
+            cursor: pointer;
+            align-self: flex-end;
+        }
+        .boton-cancelar{
+            border: 2px black solid;
+            background-color: #dc3545;
+            border-radius: 5px;
+            font-size: 1.5rem;
+            padding: 1rem;
+            cursor: pointer;
+            align-self: flex-end;
+        }
+    </style>
+    <%- include("includes/headerStyle.ejs") %>
+</head>
+<body>
+    <%- include("includes/header.ejs") %>
+    <main>
+        <div class="tarjeta">
+            <form action="" method="POST">
+                <div>
+                    <label for="fecha">Fecha</label>
+                    <input type="datetime-local" name="fecha" id="fecha">
+                </div>
+                <div>
+                    <label for="responsable">Responsable</label>
+                    <input name="responsable" id="responsable" value="<%- mantenimiento.responsable %>">                
+                </div>
+                <div>
+                    <label for="realizadoPor">Realizado por:</label>
+                    <input type="text" name="realizadoPor" id="realizadoPor" value="<%- mantenimiento.realizadoPor %>">
+                </div>
+                <div>
+                    <label for="descripcion">Descripcion</label>
+                    <textarea name="descripcion" id="descripcion"><%- mantenimiento.descripcion %></textarea>
+                </div>
+                <div>
+                    <label for="observaciones">Observaciones</label>
+                    <textarea name="observaciones" id="observaciones"><%- mantenimiento.observaciones %></textarea>
+                </div>
+            </form>
+            <button class="boton-submit" onclick="editar()">Editar</button>
+            <button class="boton-cancelar" onclick="cancelar()">Cancelar</button>
+        </div>
+    </main>
+    <script>
+        // console.log(document.getElementById("fecha"));
+        // console.log("");
+        // document.getElementById("fecha").value = "2023-11-11T11:11";
+        // 2023-11-24T12:03
+
+
+        // Convierte la fecha que esta en formato "0000-00-00 00:00:00" a "0000-00-00T00:00:00" para poder cambiarle el valor al input de la fecha
+        fecha = "<%- mantenimiento.fecha %>"
+        fecha = fecha.split(' ')
+        fecha = `${fecha[0]}T${fecha[1]}`
+        document.getElementById("fecha").value = fecha;
+
+        function cancelar(){
+            window.location = "/mantenimientos/<%-mantenimiento.idItem%>"
+        }
+
+        async function editar(){
+            let obj = {
+                fecha: $("#fecha").val(),
+                responsable: $("#descripcion").val(),
+                realizadoPor: $("#realizadoPor").val(),
+                descripcion: $("#descripcion").val(),
+                observaciones: $("#observaciones").val()
+            }
+            console.log(obj);
+            try {
+                let result = await $.post(`/mantenimientos/editar/<%- mantenimiento.idMantenimiento %>`,obj)
+                if(result.result == "success"){
+                    Swal.fire({
+                    title: 'Mantenimiento creado correctamente',
+                    icon: 'success',
+                    confirmButtonText: "Ok",
+                    confirmButtonColor: "#28a745"
+                    }).then(()=>{
+                        window.location = `/mantenimientos/<%- mantenimiento.idItem %>`
+                    })
+                }else{
+                    Swal.fire({
+                    title: 'Hubo un error editando el mantenimiento',
+                    text: `Error: ${result.error}`,
+                    icon: 'error',
+                    confirmButtonText: "Ok",
+                    confirmButtonColor: "#dc3545"
+                    })
+                }
+            } catch (error) {
+                console.log(error.message);
+            }
+        }
+
+    </script>
+</body>
+</html>
