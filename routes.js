@@ -2,6 +2,7 @@ const express = require('express')
 const router = express.Router()
 const path = require('path')
 
+// Todos los archivos controladores
 const cIndex = require('./modules/controllers/indexController')
 const cItem = require('./modules/controllers/itemController')
 const cList = require('./modules/controllers/listaController')
@@ -9,9 +10,10 @@ const cLogin = require('./modules/controllers/loginController')
 const cMantenimientos = require('./modules/controllers/mantenimientosController')
 const cAreasSectores = require('./modules/controllers/areasSectoresController')
 const cAuth = require("./modules/controllers/authController")
-const { v4: uuidv4 } = require('uuid')
+const { v4: uuidv4 } = require('uuid') // Librería para generar números de id unicos (para los nombres de las imágenes)
 const multer = require('multer')
 
+// Configuración de multer para guardar las imágenes
 const storage = multer.diskStorage({
     destination: path.resolve(__dirname, './public/uploads'),
     filename: function(req, file, cb){
@@ -23,8 +25,8 @@ const upload = multer({
     storage
 }).single('imagen')
 
-
-router.get('/',cIndex.getIndex)
+//Todas las rutas y que función llama cada una
+router.get('/', cIndex.getIndex)
 
 router.get('/login', cLogin.getLogin)
 router.post('/login', cLogin.postLogin)
@@ -61,6 +63,8 @@ router.get('/mantenimientos/editar/:id', cAuth.isAuth, cMantenimientos.getEditar
 router.post('/mantenimientos/editar/:id', cAuth.isAuth, cMantenimientos.postEditarMantenimiento)
 router.post('/mantenimientos/eliminar/:id', cAuth.isAuth, cMantenimientos.postEliminarMantenimiento)
 
+
+// Si la ruta no existe mostrar la vista "404"
 router.use((req, res) => {
     res.render("404", {auth: req.session.isAuth})
 })

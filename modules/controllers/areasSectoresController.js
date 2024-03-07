@@ -48,7 +48,7 @@ module.exports = {
     },
 
     getCrearArea: (req, res) => {
-        res.render("crearArea",{});
+        res.render("crearArea",{auth: req.session.isAuth});
     },
 
     getCrearSector: async (req, res) => {

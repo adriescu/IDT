@@ -1,3 +1,5 @@
+-- SQL para generar todas las tablas necesarias en la base de datos.
+
 -- inv.areas definition
 
 CREATE TABLE `areas` (
@@ -5,7 +7,7 @@ CREATE TABLE `areas` (
   `nombre` varchar(100) NOT NULL,
   `descripcion` text DEFAULT NULL,
   PRIMARY KEY (`idArea`)
-) ENGINE=InnoDB AUTO_INCREMENT=6 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 
 -- inv.usuarios definition
@@ -39,7 +41,7 @@ CREATE TABLE `sectores` (
   PRIMARY KEY (`idSector`),
   KEY `sectores_FK` (`idArea`),
   CONSTRAINT `sectores_FK` FOREIGN KEY (`idArea`) REFERENCES `areas` (`idArea`)
-) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 
 -- inv.items definition
@@ -50,9 +52,9 @@ CREATE TABLE `items` (
   `sector` int(11) NOT NULL,
   `categoria` int(11) NOT NULL,
   `fechaAdquisicion` date DEFAULT NULL,
+  `imagen` text DEFAULT NULL,
   PRIMARY KEY (`idItem`),
-  KEY `items_FK` (`sector`),
-  CONSTRAINT `items_FK` FOREIGN KEY (`sector`) REFERENCES `sectores` (`idSector`)
+  KEY `items_FK` (`sector`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 
@@ -60,19 +62,22 @@ CREATE TABLE `items` (
 
 CREATE TABLE `mantenimientos` (
   `idMantenimiento` int(11) NOT NULL AUTO_INCREMENT,
+  `idItem` int(11) NOT NULL,
   `fecha` datetime NOT NULL DEFAULT current_timestamp(),
   `responsable` varchar(256) NOT NULL,
   `realizadoPor` varchar(256) NOT NULL,
   `descripcion` text NOT NULL,
   `observaciones` text NOT NULL,
-  PRIMARY KEY (`idMantenimiento`)
+  PRIMARY KEY (`idMantenimiento`),
+  KEY `mantenimientos_FK` (`idItem`),
+  CONSTRAINT `mantenimientos_FK` FOREIGN KEY (`idItem`) REFERENCES `items` (`idItem`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 -- inv.sessions definition
 
-CREATE TABLE IF NOT EXISTS `sessions` (
-  `session_id` varchar(128) COLLATE utf8mb4_bin NOT NULL,
+CREATE TABLE `sessions` (
+  `session_id` varchar(128) CHARACTER SET utf8mb4 COLLATE utf8mb4_bin NOT NULL,
   `expires` int(11) unsigned NOT NULL,
-  `data` mediumtext COLLATE utf8mb4_bin,
+  `data` mediumtext CHARACTER SET utf8mb4 COLLATE utf8mb4_bin DEFAULT NULL,
   PRIMARY KEY (`session_id`)
-) ENGINE=InnoDB
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
