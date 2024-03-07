@@ -1,7 +1,7 @@
 {
   "name": "idt",
   "version": "1.0.0",
-  "description": "Esto es un test. Por favor ignorar :)",
+  "description": "Sin descripcion",
   "main": "app.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
